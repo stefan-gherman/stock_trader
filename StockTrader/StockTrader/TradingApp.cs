@@ -5,13 +5,20 @@ namespace stockTrader
 
   internal class TradingApp
   {
+		private ITrader _trader;
     public static void Main(string[] args)
     {
-	    TradingApp app = new TradingApp();
-	    app.Start();
+			var trader = Trader.Instance();
+	    TradingApp app = new TradingApp(trader);
+	    app.Start(trader);
     }
 
-    public void Start()
+	public TradingApp(ITrader trader)
+        {
+			_trader = trader;
+        }
+
+    public void Start(ITrader trader)
     {
 	    Console.WriteLine("Enter a stock symbol (for example aapl):");
 	    string symbol = Console.ReadLine();
@@ -23,7 +30,7 @@ namespace stockTrader
 	    }
 	    
 	    try {
-		    bool purchased = Trader.Instance.Buy(symbol, price);
+		    bool purchased = trader.Buy(symbol, price);
 		    if (purchased) {
 			    Logger.Instance.Log("Purchased stock!");
 		    }

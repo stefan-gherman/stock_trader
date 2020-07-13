@@ -7,11 +7,13 @@ namespace stockTrader
         [Test] // everything works
         public void TestGetPriceNormalValues()
         {
+
         }
 
         [Test] // readFromURL threw an exception
         public void TestGetPriceServerDown()
         {
+
         }
 
         [Test] // readFromURL returned wrong JSON

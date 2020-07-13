@@ -1,26 +1,29 @@
+using stock_trader_app_DI_csharp.StockTrader;
+
 namespace stockTrader
 {
-    public class Trader
+    public class Trader : ITrader
     {
         private static Trader _instance;
+        private  static IAPIService _stockApiService;
+        
 
-        public static Trader Instance
+        public static Trader Instance()
         {
-            get
-            {
+        
                 if (_instance == null)
                 {
-                    _instance = new Trader();
+                    var stockApiService = StockAPIService.Instance();
+                    _instance = new Trader(stockApiService);
                 }
                 return _instance;
-            }
         }
 
-        private readonly StockAPIService _stockApiService;
+      
 
-        public Trader()
+        private Trader (IAPIService stockApiService)
         {
-            _stockApiService = new StockAPIService();
+            _stockApiService = stockApiService;
         }
         
         /// <summary>
