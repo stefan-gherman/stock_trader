@@ -8,7 +8,7 @@ namespace stockTrader
 		private ITrader _trader;
     public static void Main(string[] args)
     {
-			var trader = Trader.Instance();
+			Trader trader = Trader.Instance();
 	    TradingApp app = new TradingApp(trader);
 	    app.Start(trader);
     }
@@ -28,7 +28,7 @@ namespace stockTrader
 	    {
 		    Console.WriteLine("Please enter a number.");
 	    }
-	    
+			Console.WriteLine(trader.GetService().GetAPIPath());
 	    try {
 		    bool purchased = trader.Buy(symbol, price);
 		    if (purchased) {

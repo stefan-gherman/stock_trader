@@ -10,5 +10,7 @@ namespace stock_trader_app_DI_csharp.StockTrader
     {
         double GetPrice(string symbol);
         bool Buy(string symbol);
+        IURLReader GetReader();
+        string GetAPIPath();
     }
 }

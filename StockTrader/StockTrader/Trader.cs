@@ -19,7 +19,16 @@ namespace stockTrader
                 return _instance;
         }
 
-      
+        public IAPIService Service
+        {
+            get { return _stockApiService; }
+            set { _stockApiService = value; }
+        }
+
+        public IAPIService GetService()
+        {
+            return _stockApiService;
+        }
 
         private Trader (IAPIService stockApiService)
         {
@@ -39,10 +48,10 @@ namespace stockTrader
             if (price <= bid) {
                 result = true;
                 _stockApiService.Buy(symbol);
-                Logger.Instance.Log("Purchased " + symbol + " stock at $" + bid + ", since its higher that the current price ($" + price + ")");
+                //Logger.Instance.Log("Purchased " + symbol + " stock at $" + bid + ", since its higher that the current price ($" + price + ")");
             }
             else {
-                Logger.Instance.Log("Bid for " + symbol + " was $" + bid + " but the stock price is $" + price + ", no purchase was made.");
+                //Logger.Instance.Log("Bid for " + symbol + " was $" + bid + " but the stock price is $" + price + ", no purchase was made.");
                 result = false;
             }
             return result;
